@@ -1,6 +1,46 @@
 {% extends "bazowy.html" %}
-{% block tytulStrony %} MZ :: ADLER {% endblock %}
-{% block tytul %}Menadżer zamówień{% endblock %}
+{% block tytulStrony %} MZ :: ADLER :: Formularz kontaktowy {% endblock %}
+{% block tytul %}Formularz kontaktowy{% endblock %}
 {% block trescStrony %}
-    Jestem KONTAKT
+    <div id="contactWrapper">
+        <div id="contactForm">
+            {% if sent %}
+                <div>
+                    <p>Wiadomość została wysłana</p>
+                </div>
+            {% else %}
+                <form action="/kontakt/" method="post">
+                    <div class="box">
+                        {{ form.as_p }}
+                        <p><input type="submit" value="Wyślij!"></p></div>
+                </form>
+            {% endif %}
+        </div>
+        <div id="contactDetailsMap">
+            <div id="contactDetails">
+                <table>
+                    <tr>
+                        <td>Numer telefonu</td>
+                        <td>+48 501 68 40 91</td>
+                    </tr>
+                    <tr>
+                        <td>Numer faxu</td>
+                        <td>+48 43 675 11 68</td>
+                    </tr>
+                    <tr>
+                        <td>Adres e-mail</td>
+                        <td><a href="mailto:biuro@jajaprostoodkury.pl">biuro@jajaprostoodkury.pl</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="contackMap">
+                <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                        src="https://maps.google.pl/maps?f=q&amp;source=s_q&amp;hl=pl&amp;geocode=&amp;q=+Chinalski+Bartosz.+Ferma+drobiu,+jaja+kurze&amp;aq=&amp;sll=51.650407,19.291992&amp;sspn=0.993502,2.688904&amp;t=m&amp;ie=UTF8&amp;hq=Chinalski+Bartosz.+Ferma+drobiu,+jaja+kurze&amp;hnear=&amp;ll=51.589443,19.113464&amp;spn=0.074656,0.145912&amp;z=12&amp;output=embed"></iframe>
+                <br/>
+                <small><a
+                        href="https://maps.google.pl/maps?f=q&amp;source=embed&amp;hl=pl&amp;geocode=&amp;q=+Chinalski+Bartosz.+Ferma+drobiu,+jaja+kurze&amp;aq=&amp;sll=51.650407,19.291992&amp;sspn=0.993502,2.688904&amp;t=m&amp;ie=UTF8&amp;hq=Chinalski+Bartosz.+Ferma+drobiu,+jaja+kurze&amp;hnear=&amp;ll=51.589443,19.113464&amp;spn=0.074656,0.145912&amp;z=12"
+                        style="color:#0000FF;text-align:left">Wyświetl większą mapę</a></small>
+            </div>
+        </div>
+    </div>
 {% endblock %}

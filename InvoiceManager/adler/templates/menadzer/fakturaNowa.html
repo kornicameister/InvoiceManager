@@ -1,8 +1,27 @@
 {% extends "bazowy.html" %}
-{% block tytulStrony %} Zmień fakturę dla {{ zamowienie.klient.firma }} {% endblock %}
+{% block tytulStrony %} Zmień fakturę dla {% endblock %}
 {% block tytul %}
-    Faktura: {{ zamowienie.klient.firma }}
+    Faktura:
 {% endblock %}
 {% block trescStrony %}
-    Cześć Majkowy Faktura nowa
+    {% if sent %}
+        <div>
+            <p>Faktura została wysłana</p>
+        </div>
+    {% else %}
+        <div id="zamowienieFormWrapper">
+            <div id="zamowienie">
+                <form action="/kontakt/" method="post">
+                    <div class="box">
+                        {{ form.as_p }}
+                        <p><input type="submit" value="Złóż zamówienie"></p></div>
+                </form>
+            </div>
+            <div id="pozycje">
+            <div class="boxPozycja">
+                {{ form2.as_table }}
+            </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}

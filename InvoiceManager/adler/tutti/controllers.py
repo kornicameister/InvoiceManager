@@ -1,13 +1,32 @@
 # coding=utf-8
 # Create your views here.
-from models import Klient, Zamowienie
+from django.template import RequestContext
+from models import  Zamowienie
 from django.shortcuts import render_to_response, get_object_or_404
+from forms import ContactForm, ZamowienieForm, PozycjaZamowieniaForm
+from django.core.mail import send_mail
+from datetime import  date
 
 def index(request):
     return render_to_response('menadzer/index.html')
 
+
 def uruchomNoweZamowienie(request):
-    return render_to_response('menadzer/fakturaNowa.html')
+    if request.method == 'POST':
+        form = ZamowienieForm(request.POST)
+        if form.is_valid():
+            return render_to_response('menadzer/fakturaNowa.html', {'sent': True})
+    else:
+        invoiceItemFormSet = PozycjaZamowieniaForm(initial={
+            'ilosc': 1
+        })
+        form = ZamowienieForm(initial={
+            'dw': date.today()
+        })
+
+    return render_to_response('menadzer/fakturaNowa.html', {'form': form, 'form2': invoiceItemFormSet, 'sent': False},
+        context_instance=RequestContext(request))
+
 
 def uruchomZmianeZamowienia(request, zamowienie_id):
 # try except - instrukcja łapania wyjątku
@@ -29,5 +48,22 @@ def uruchomZmianeZamowienia(request, zamowienie_id):
         {'zamowienie': z}
     )
 
+
 def pokazKontakt(request):
-    return render_to_response('kontakt/kontakt.html')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            msg_content = form.cleaned_data['msg_content']
+            sender = form.cleaned_data['sender']
+            cc_sender = form.cleaned_data['cc_sender']
+            odbiorcy = []
+            if cc_sender:
+                odbiorcy.append(sender)
+            send_mail(subject, msg_content, sender, odbiorcy)
+        return render_to_response('kontakt/kontakt.html', {'sent': True})
+    else:
+        form = ContactForm()
+
+    return render_to_response('kontakt/kontakt.html', {'form': form, 'sent': False},
+        context_instance=RequestContext(request))

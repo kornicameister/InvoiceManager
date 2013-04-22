@@ -8,6 +8,9 @@
     <link rel="stylesheet"
           type="text/css"
           href="{% static "css/main_style.css" %}"/>
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static "css/form_style.css" %}"/>
 </head>
 <body>
 <div id="wrapper">
@@ -17,6 +20,7 @@
                  title="źródło: http://www.imageenvision.com/150/14902-human-arms-reaching-out-from-an-egg-clipart-by-djart.jpg">
         </div>
         <p id="headerTitle">JAJA PROSTO OD KURY</p>
+
         <div id="egg1" class="logoTitle">
             <img src="{% static "img/egg_1.png" %}" alt="Logo Firmy"
                  title="źródło: http://www.imageenvision.com/150/14901-egg-with-feet-clipart-by-djart.jpg">
@@ -44,7 +48,9 @@
     </nav>
 
     <section>
-        {% block tytul %}{% endblock %}
+        <p class="pageTitle">
+            {% block tytul %}{% endblock %}
+        </p>
         <article>
             {% block trescStrony %}{% endblock %}
         </article>

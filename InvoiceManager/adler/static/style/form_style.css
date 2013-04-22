@@ -1,0 +1,61 @@
+div#contactWrapper {
+    width   : 100%;
+    margin  : 0 auto;
+    display : inline;
+}
+
+div#contactForm {
+    padding-top : 30px;
+    float       : left;
+    width       : 50%;
+    height      : auto;
+    margin-left : 50px;
+}
+
+div#contactDetailsMap {
+    text-align : center;
+    width      : auto;
+    height     : auto;
+    float      : left;
+}
+
+div#contackMap {
+    margin-top : 20px;
+}
+
+form, input, select, textarea {
+    margin  : 0;
+    padding : 0;
+    color   : #9acd32;
+}
+
+div.box {
+    margin : 0 auto;
+    width  : 100%;
+}
+
+div.box p {
+    width   : 100%;
+    display : block;
+    padding : 10px 0 10px 0;
+}
+
+div.box p label {
+    display    : block;
+    color      : #bbbbbb;
+    font-size  : 12px;
+    float      : left;
+    width      : 100px;
+    text-align : right;
+    padding    : 5px 20px 0 0;
+}
+
+div.box p input[type=submit] {
+    width       : 300px;
+    margin-left : 125px;
+}
+
+/*formularz do zamówienia*/
+
+
+/*formularz do zamówienia*/

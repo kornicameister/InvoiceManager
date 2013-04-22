@@ -110,7 +110,8 @@ class PozycjaZamowienia(models.Model):
     produkt = models.ForeignKey(Produkt)
     rodzaj = models.CharField(max_length=2, choices=JAJKO_RODZAJ, default=KLATKOWE, db_index=True)
     ilosc = models.IntegerField()
-    ilosc_typ = models.CharField(max_length=3, choices=ILOSC_RODZAJ, db_index=True, verbose_name='Opakowanie')
+    ilosc_typ = models.CharField(max_length=3, choices=ILOSC_RODZAJ, default=ILOSC_SKRZYNKI, db_index=True,
+        verbose_name='Opakowanie')
     transport = models.CharField(max_length=100, choices=TRANSPORT, verbose_name='Wymagania transportowe')
 
 
