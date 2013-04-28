@@ -68,6 +68,12 @@ article {
 /*główna architektura strony*/
 
 /*znaczniki*/
+div#contentWrapper {
+    width   : 100%;
+    margin  : 0 auto;
+    display : inline;
+}
+
 div.logoTitle {
     display : inline;
 }
@@ -137,12 +143,45 @@ h2 {
     top       : 51px;
 }
 
-p.pageTitle{
-text-align: center;
-    color: #9acd32;
-    font-size: x-large;
-    font-weight: bolder;
+p.pageTitle {
+    text-align  : center;
+    color       : #9acd32;
+    font-size   : x-large;
+    font-weight : bolder;
 }
+
+div.logoWrapper {
+    float  : left;
+    width  : 40%;
+    height : auto;
+}
+
+div.content {
+    position       : relative;
+    display        : table;
+    float          : left;
+    width          : 100%;
+    height         : auto;
+    font-size      : x-large;
+    text-align     : center;
+    vertical-align : middle;
+}
+
+div.content div.blockOuter {
+    display        : table-cell;
+    vertical-align : middle;
+}
+
+div.content div.blockInner {
+    width      : 90%;
+    margin     : 0 auto; /*wyrównanie bloku w poziomie*/
+    padding    : 10px;
+}
+
+div.content p:last-child {
+    margin-top : 50px;
+}
+
 /*znaczniki*/
 
 /*style do menu*/

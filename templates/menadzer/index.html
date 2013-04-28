@@ -1,0 +1,26 @@
+{% extends "bazowy.html" %}{% load staticfiles %}
+{% block tytulStrony %} MZ :: ADLER {% endblock %}
+{% block tytul %}Jaja od prosto od kury{% endblock %}
+{% block trescStrony %}
+    <div id="contentWrapper">
+        <div class="content">
+            <div class="logoWrapper">
+                <img src="{% static "img/logo_company.jpg" %}" alt="Logo Firmy"/>
+            </div>
+            <div class="blockOuter">
+                <div class="blockInner">
+                    <p>
+                        Witamy serdecznie, <a href="http://www.jajaprostoodkury.pl/" target="_blank">nasza strona</a>
+                        jest w trakcie budowy.
+                        Zapraszamy do kontaktu telefonicznego, mailowego oraz
+                        składania zamówień poprzez <a href="/faktura/nowa/">formularz</a> (wymagane jest konto).
+                    </p>
+
+                    <p>
+                        Odpowiemy na pytania dotyczące cen, warunków zakupu oraz transportu.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,31 +1,24 @@
 # coding=utf-8
 # Create your views here.
 from django.template import RequestContext
-from models import  Zamowienie
 from django.shortcuts import render_to_response, get_object_or_404
-from forms import ContactForm, ZamowienieForm, PozycjaZamowieniaForm
 from django.core.mail import send_mail
-from datetime import  date
+
+from models import Zamowienie
+from forms import ContactForm, ZamowienieWizard
+
 
 def index(request):
     return render_to_response('menadzer/index.html')
 
 
 def uruchomNoweZamowienie(request):
-    if request.method == 'POST':
-        form = ZamowienieForm(request.POST)
-        if form.is_valid():
-            return render_to_response('menadzer/fakturaNowa.html', {'sent': True})
-    else:
-        invoiceItemFormSet = PozycjaZamowieniaForm(initial={
-            'ilosc': 1
-        })
-        form = ZamowienieForm(initial={
-            'dw': date.today()
-        })
+    return render_to_response('menadzer/wizard/stepStart.html', {
+        'wizard': ZamowienieWizard.as_view(ZamowienieWizard.get_forms())(request)
+    }, context_instance=RequestContext(request))
 
-    return render_to_response('menadzer/fakturaNowa.html', {'form': form, 'form2': invoiceItemFormSet, 'sent': False},
-        context_instance=RequestContext(request))
+#    return render_to_response('menadzer/fakturaNowa.html', {'form': form, 'form2': invoiceItemFormSet, 'sent': False},
+#        context_instance=RequestContext(request))
 
 
 def uruchomZmianeZamowienia(request, zamowienie_id):
@@ -45,7 +38,7 @@ def uruchomZmianeZamowienia(request, zamowienie_id):
 #    return render_to_response('menadzer/fakturaZmien.html', {'zamowienie': zamowienie})
     z = get_object_or_404(Zamowienie, id=zamowienie_id)
     return render_to_response('menadzer/fakturaZmien.html',
-        {'zamowienie': z}
+                              {'zamowienie': z}
     )
 
 
@@ -66,4 +59,4 @@ def pokazKontakt(request):
         form = ContactForm()
 
     return render_to_response('kontakt/kontakt.html', {'form': form, 'sent': False},
-        context_instance=RequestContext(request))
+                              context_instance=RequestContext(request))

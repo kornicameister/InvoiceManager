@@ -1,9 +1,3 @@
-div#contactWrapper {
-    width   : 100%;
-    margin  : 0 auto;
-    display : inline;
-}
-
 div#contactForm {
     padding-top : 30px;
     float       : left;

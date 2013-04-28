@@ -2,14 +2,14 @@
 {% block tytulStrony %} MZ :: ADLER :: Formularz kontaktowy {% endblock %}
 {% block tytul %}Formularz kontaktowy{% endblock %}
 {% block trescStrony %}
-    <div id="contactWrapper">
+    <div id="contentWrapper">
         <div id="contactForm">
             {% if sent %}
                 <div>
                     <p>Wiadomość została wysłana</p>
                 </div>
             {% else %}
-                <form action="/kontakt/" method="post">
+                <form action="../kontakt/" method="post">
                     <div class="box">
                         {{ form.as_p }}
                         <p><input type="submit" value="Wyślij!"></p></div>
