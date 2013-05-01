@@ -1,11 +1,15 @@
 {% extends "bazowy.html" %}
 {% load i18n %}
+{% load static %}
 {% block tytulStrony %} MZ :: ADLER :: Nowe zamówienie {% endblock %}
 {% block tytul %}Zamówienie{% endblock %}
-{% block head %}{{ wizard.form.media }}{% endblock %}
+{% block head %}
+    {{ wizard.form.media }}
+{% endblock %}
 {% block trescStrony %}
     <p>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
-    <form action="" method="post">{% csrf_token %}
+    <form id="wizardForm" action="" method="post">
+        {% csrf_token %}
         <table>
             {{ wizard.management_form }}
             {% if wizard.form.forms %}

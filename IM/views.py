@@ -13,7 +13,7 @@ def index(request):
 
 
 def uruchomNoweZamowienie(request):
-    return render_to_response('menadzer/wizard/stepStart.html', {
+    return render_to_response('wizard/stepInvoice.html', {
         'wizard': ZamowienieWizard.as_view(ZamowienieWizard.get_forms())(request)
     }, context_instance=RequestContext(request))
 

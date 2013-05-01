@@ -67,6 +67,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     ('css', STATIC_ROOT + '/style'),
     ('img', STATIC_ROOT + '/img'),
+    ('js', STATIC_ROOT + '/js'),
 )
 
 # List of finder classes that know how to find static files in
@@ -93,7 +94,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    # Uncomment the next line for simple clickjacking protection:
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
@@ -107,6 +107,7 @@ import os
 TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), '..', 'templates').replace('\\', '/'),)
 
 INSTALLED_APPS = (
+    'django.contrib.formtools',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

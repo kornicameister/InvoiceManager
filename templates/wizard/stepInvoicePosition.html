@@ -1,0 +1,50 @@
+{% extends "wizard/stepInvoice.html" %}
+{% load i18n %}
+{% load static %}
+{% block tytulStrony %} MZ :: ADLER :: Nowe zamówienie {% endblock %}
+{% block tytul %}Zamówienie{% endblock %}
+{% block head %}
+    <script
+            type="text/javascript"
+            src="{% static "js/jquery-2.0.0.js" %}"></script>
+    <script
+            type="text/javascript"
+            src="{% static "js/jquery.formset.js" %}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('table.form-container').formset({
+                formCssClass: 'dynamic-event-form',
+                prefix      : 'invoicePosition'
+            });
+        })
+    </script>
+    {{ wizard.form.media }}
+{% endblock %}
+{% block trescStrony %}
+    <p>Krok {{ wizard.steps.step1 }} z {{ wizard.steps.count }}</p>
+    <form id="wizardForm" action="" method="post">
+        {% csrf_token %}
+        {% if wizard.form.forms %}
+            {% for form in wizard.form.forms %}
+                <table id="{{ form.prefix }}-row" class="form-container" border="0" cellpadding="0">
+                    {{ form }}
+                </table>
+            {% endfor %}
+        {% else %}
+            {{ wizard.form }}
+        {% endif %}
+        {% if wizard.steps.prev %}
+            <p>
+                <button name="wizard_goto_step" type="submit"
+                        value="{{ wizard.steps.first }}">{% trans "first step" %}</button>
+                <button name="wizard_goto_step" type="submit"
+                        value="{{ wizard.steps.prev }}">{% trans "prev step" %}</button>
+            </p>
+        {% endif %}
+        <p>
+            {{ wizard.management_form }}
+            {{ wizard.form.management_form }}
+            <input type="submit" value="{% trans "submit" %}" />
+        </p>
+    </form>
+{% endblock %}
