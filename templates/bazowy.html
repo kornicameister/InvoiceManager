@@ -2,15 +2,15 @@
 {% load staticfiles %}
 <html lang="pl">
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <!-- wymuszenie polskiego kodowania znaków -->
     <title>{% block tytulStrony %}domyślny{% endblock %}</title>
     <link rel="stylesheet"
           type="text/css"
-          href="{% static "css/main_style.css" %}"/>
+          href="{% static "css/main_style.css" %}" />
     <link rel="stylesheet"
           type="text/css"
-          href="{% static "css/form_style.css" %}"/>
+          href="{% static "css/form_style.css" %}" />
     {% block head %}{% endblock %}
 </head>
 <body>
@@ -32,19 +32,28 @@
             <li id="home">
                 <a href="/" class="homeIcon">Strona główna</a>
             </li>
-            <li id="news">
-                <a href="/faktura/nowa/" title="Kliknij aby utworzyć nowe zamówienie">Nowe zamówienie</a>
-            </li>
-            <li id="about">
-                <a href="#about" title="Zmień status zamówienia">Status zamówienia</a>
-            </li>
-            <li id="services">
+            <li>
                 <a href="/kontakt/">Kontakt</a>
             </li>
-            <li id="contact">
+            <li>
                 <a href="/admin/" title="Kliknij aby zalogować się do panelu administratora" target="_blank">Panel
-                    Administratora</a>
+                                                                                                             Administratora</a>
             </li>
+            {% if request.user.is_authenticated %}
+                <li>
+                    <a href="/faktura/nowa/" title="Kliknij aby utworzyć nowe zamówienie">Nowe zamówienie</a>
+                </li>
+                <li>
+                    <a href="#about" title="Zmień status zamówienia">Status zamówienia</a>
+                </li>
+                <li>
+                    <a href="/wyloguj" title="Kliknij aby się wylogować">wyloguj</a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="/zaloguj" title="Kliknij aby się zalogować">Zaloguj</a>
+                </li>
+            {% endif %}
             {% block nawigacja %}{% endblock %}
         </ul>
     </nav>

@@ -1,4 +1,5 @@
 # coding=utf-8
+from django.contrib.auth.decorators import login_required
 
 __author__ = 'Adler'
 from django.contrib.formtools.wizard.views import SessionWizardView

@@ -1,0 +1,27 @@
+{% extends "bazowy.html" %}{% load staticfiles %}
+{% block tytulStrony %} MZ :: ADLER {% endblock %}
+{% block tytul %}Zaloguj się{% endblock %}
+{% block trescStrony %}
+    <div id="contentWrapper">
+        <div class="content">
+            {% if not request.user.is_authenticated %}
+                {{ state }}
+                <form action="/zaloguj/" method="post">
+                    {% csrf_token %}
+                    {% if next %}
+                        <input type="hidden" name="next" value="{{ next }}" />
+                    {% endif %}
+                    Login:
+                    <input type="text" name="username" value="{{ username }}" /><br />
+                    Hasło:
+                    <input type="password" name="password" value="" /><br />
+
+                    <input type="submit" value="Log In" />
+                </form>
+            {% else %}
+                {{ state }}
+                <p>Przekierowanie do strony głównej za 5 sekund</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
