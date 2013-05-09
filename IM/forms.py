@@ -1,5 +1,4 @@
 # coding=utf-8
-from django.contrib.auth import authenticate
 
 __author__ = 'Adler'
 from django.contrib.formtools.wizard.views import SessionWizardView
@@ -80,35 +79,3 @@ class ZamowienieWizard(SessionWizardView):
         return render_to_response('wizard/stepDone.html',
                                   {'zamowienie': invoice,
                                    'pozycje': PozycjaZamowienia.objects.filter(zamowienie_id=invoice.pk)})
-
-
-from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth.forms import AuthenticationForm
-
-
-class EmailAuthenticationForm(AuthenticationForm):
-    username = forms.CharField(label=_(u'Login'))
-
-    error_messages = {
-        'invalid_login': _(u"Wpisz poprawny login i hasło. "
-                           u"Obydwa pola są czułe na wielkość znaków."),
-        'inactive': _("Konto nie jest aktywne."),
-        'no_cookies': _(u"Wygląda na to, że Twoja przeglądarka ma wyłączoną "
-                        u"obsługę cookie. Włączona obsługa cookie jest wymagana do zalogowania"),
-    }
-
-    def clean(self):
-        username = self.cleaned_data.get('username')
-        password = self.cleaned_data.get('password')
-
-        if username and password:
-            self.user_cache = authenticate(username=username, password=password)
-
-            if self.user_cache is None:
-                raise forms.ValidationError(self.error_messages['invalid_login'])
-            elif not self.user_cache.is_active:
-                raise forms.ValidationError(self.error_messages['inactive'])
-
-        self.check_for_test_cookie()
-
-        return self.cleaned_data

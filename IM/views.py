@@ -1,6 +1,7 @@
 # coding=utf-8
 # Create your views here.
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from django.core.mail import send_mail
@@ -10,40 +11,23 @@ from forms import ContactForm
 
 
 def index(request):
-    return render_to_response('index.html')
-
-
-def zaloguj(request):
-    state = "Proszę zalogować się przy użyciu swojego hasła i nazwy użytkownika..."
-    username = ''
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                state = "Logowanie zakończyło się sukcesem"
-            else:
-                state = "Konto użytkownika istnieje, ale jest nieaktywne, proszę skontaktować się z administratorem"
-        else:
-            state = "Nazwa użytkownika / hasło są niepoprawne"
-
-    return render_to_response('login/login.html', {'state': state, 'username': username},
+    return render_to_response('index.html',
                               context_instance=RequestContext(request))
 
 
 def wyloguj(request):
-    state = 'Zostałeś wylogowany ze strony...'
+    state = 'Zostałeś wylogowany ze strony lub w ogóle nie jesteś zalogowany, powrót do strony głównej'
     logout(request)
     return render_to_response('login/logout.html', {'state': state},
                               context_instance=RequestContext(request))
 
 
+@login_required(login_url='/zaloguj/')
 def uruchomZmianeZamowienia(request, zamowienie_id):
     z = get_object_or_404(Zamowienie, id=zamowienie_id)
     return render_to_response('menadzer/fakturaZmien.html',
-                              {'zamowienie': z})
+                              {'zamowienie': z},
+                              context_instance=RequestContext(request))
 
 
 def pokazKontakt(request):

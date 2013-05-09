@@ -51,5 +51,83 @@ div.box p input[type=submit] {
 
 /*formularz do zamówienia*/
 
-
 /*formularz do zamówienia*/
+
+/* formularz logowania */
+form.loginForm {
+    width          : 70%;
+    vertical-align : middle;
+    margin         : 0 auto;
+
+    box-shadow     : 0 0 1px rgba(0, 0, 0, 0.3), 0 3px 7px rgba(0, 0, 0, 0.3), inset 0 1px rgba(255, 255, 255, 1), inset 0 -3px 2px rgba(0, 0, 0, 0.25);
+    border-radius  : 5px;
+    background     : linear-gradient(#eeefef, #ffffff 10%);
+}
+
+form.loginForm input[type=text],
+form.loginForm input[type=password] {
+    font-family   : 'Lato', Calibri, Arial, sans-serif;
+    font-size     : 17px;
+    font-weight   : 400;
+    text-shadow   : 0 1px 0 rgba(255, 255, 255, 0.8);
+
+    /* Size and position */
+    width         : 80%;
+    padding       : 10px 18px 10px 45px;
+
+    /* Styles */
+    border        : none; /* Remove the default border */
+    box-shadow    : inset 0 0 5px rgba(0, 0, 0, 0.1), inset 0 3px 2px rgba(0, 0, 0, 0.1);
+    border-radius : 3px;
+    background    : #f9f9f9;
+    color         : #777;
+    transition    : color 0.3s ease-out;
+}
+
+form.loginForm input[type=text]:hover,
+form.loginForm input[type=password]:hover {
+    color : #52cfeb;
+}
+
+form.loginForm input[type=text]:focus,
+form.loginForm input[type=password]:focus {
+    color : #42A2BC;
+}
+
+form.loginForm input[type=text]:focus,
+form.loginForm input[type=password]:focus,
+form.loginForm button[type=submit]:focus {
+    outline : none;
+}
+
+form.loginForm input[type=text] {
+    margin-bottom : 10px;
+}
+
+form.loginForm input[type=submit] {
+    /* Size and position */
+    background      : url('../img/login2.png') no-repeat left center;
+    background-size : contain;
+    width           : 160px;
+    height          : 40px;
+    padding         : 10px;
+    z-index         : 2;
+    margin          : 10px;
+
+    /* Styles */
+    border-radius   : 10%;
+    box-shadow      : 0 0 2px rgba(0, 0, 0, 0.1), 0 3px 2px rgba(0, 0, 0, 0.1), inset 0 -3px 2px rgba(0, 0, 0, 0.2);
+    cursor          : pointer;
+}
+
+form.loginForm table {
+    width          : 90%;
+    vertical-align : middle;
+    margin         : 0 auto;
+}
+
+form.loginForm table td:first-child {
+    font-size : smaller;
+}
+
+/* formularz logowania */

@@ -16,12 +16,8 @@ class Klient(models.Model):
     regon = models.CharField(max_length=14, unique=True)
     typ = models.CharField(max_length=1, choices=KLIENT_TYP, default=NOWY)
 
-    def __init__(self, *args, **kwargs):
-        super(Klient, self).__init__(*args, **kwargs)
-        self.username = self.nazwa
-
     def __unicode__(self):
-        return self.nazwa + ' [' + self.typ + ']'       #TODO znaleźć sposób na wypisanie "klient stały" zamiast S
+        return self.nazwa + ' [' + self.typ + ']'
 
     def czyStaly(self):
         return self.typ == self.STALY

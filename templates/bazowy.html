@@ -30,15 +30,16 @@
     <nav>
         <ul class="fancyNav">
             <li id="home">
-                <a href="/" class="homeIcon">Strona główna</a>
+                <a href="/" class="homeIcon" title="Strona główna">###</a>
             </li>
             {% if not user.is_authenticated %}
                 <li id="login">
-                    <a href="/zaloguj" class="loginIcon">Zaloguj</a>
+                    <a href="/zaloguj" class="loginIcon"
+                       title="Zaloguj się aby skorzystać z większej ilości funkcji">###</a>
                 </li>
             {% else %}
                 <li id="logout">
-                    <a href="/wyloguj" class="logoutIcon">Wyloguj</a>
+                    <a href="/wyloguj" class="logoutIcon" title="Wyloguj się z aplikacji">###</a>
                 </li>
             {% endif %}
             <li>

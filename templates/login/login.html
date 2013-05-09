@@ -1,39 +1,36 @@
-{% extends "bazowy.html" %}{% load staticfiles %}
+{% extends "bazowy.html" %}
+{% load staticfiles %}
 {% block tytulStrony %} MZ :: ADLER {% endblock %}
 {% block tytul %}Zaloguj się{% endblock %}
-{% block head %}
-    <script type="text/javascript">
-        function redirect() {
-            console.log('Redirecting to /');
-            setTimeout(function () {
-                window.location.href = "/";
-            }, 5000);
-        }
-    </script>
-{% endblock %}
 {% block trescStrony %}
     <div id="contentWrapper">
         <div class="content">
-            {% if not user.is_authenticated %}
-                {{ state }}
-                <form action="/zaloguj/" method="post">
-                    {% csrf_token %}
-                    {% if next %}
-                        <input type="hidden" name="next" value="{{ next }}" />
-                    {% endif %}
-                    Login:
-                    <input type="text" name="username" value="{{ username }}" /><br />
-                    Hasło:
-                    <input type="password" name="password" value="" /><br />
-
-                    <input type="submit" value="Log In" />
-                </form>
-            {% else %}
-                <p>Przekierowanie do strony głównej za 5 sekund</p>
-                <script type="text/javascript">
-                    redirect()
-                </script>
-            {% endif %}
+            <div class="blockOuter">
+                <div class="blockInner">
+                    <div class="formWrapper">
+                        {% if not user.is_authenticated %}
+                            {% if form.errors %}
+                                <p>Niepoprawny login lub hasło</p>
+                            {% endif %}
+                            <form action="{% url 'django.contrib.auth.views.login' %}" method="post" class="loginForm">
+                                {% csrf_token %}
+                                <table>
+                                    <tr>
+                                        <td>{{ form.username.label_tag }}</td>
+                                        <td>{{ form.username }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ form.password.label_tag }}</td>
+                                        <td>{{ form.password }}</td>
+                                    </tr>
+                                </table>
+                                <input type="submit" value="Zaloguj się" />
+                                <input type="hidden" name="next" value="{{ next }}" />
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
