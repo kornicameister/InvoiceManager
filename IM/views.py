@@ -16,9 +16,9 @@ def index(request):
 
 
 def wyloguj(request):
-    state = 'Zostałeś wylogowany ze strony lub w ogóle nie jesteś zalogowany, powrót do strony głównej'
+    state = 'Wylogowałeś się z aplikacji'
     logout(request)
-    return render_to_response('login/logout.html', {'state': state},
+    return render_to_response('login/login.html', {'state': state, 'logout': True, 'next': '/'},
                               context_instance=RequestContext(request))
 
 

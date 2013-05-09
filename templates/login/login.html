@@ -1,14 +1,22 @@
 {% extends "bazowy.html" %}
 {% load staticfiles %}
 {% block tytulStrony %} MZ :: ADLER {% endblock %}
-{% block tytul %}Zaloguj się{% endblock %}
+{% block tytul %}
+    {% if logout %}
+        Wylogowany
+    {% else %}
+        Zaloguj się
+    {% endif %}
+{% endblock %}
 {% block trescStrony %}
     <div id="contentWrapper">
         <div class="content">
             <div class="blockOuter">
                 <div class="blockInner">
                     <div class="formWrapper">
-                        {% if not user.is_authenticated %}
+                        {% if logout %}
+                            <p>{{ state }}</p>
+                        {% else %}
                             {% if form.errors %}
                                 <p>Niepoprawny login lub hasło</p>
                             {% endif %}
