@@ -1,6 +1,6 @@
 # coding=utf-8
 # Create your views here.
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from django.core.mail import send_mail
@@ -33,6 +33,13 @@ def zaloguj(request):
                               context_instance=RequestContext(request))
 
 
+def wyloguj(request):
+    state = 'Zostałeś wylogowany ze strony...'
+    logout(request)
+    return render_to_response('login/logout.html', {'state': state},
+                              context_instance=RequestContext(request))
+
+
 def uruchomZmianeZamowienia(request, zamowienie_id):
     z = get_object_or_404(Zamowienie, id=zamowienie_id)
     return render_to_response('menadzer/fakturaZmien.html',
@@ -57,3 +64,4 @@ def pokazKontakt(request):
 
     return render_to_response('kontakt/kontakt.html', {'form': form, 'sent': False},
                               context_instance=RequestContext(request))
+

@@ -7,10 +7,10 @@
     <title>{% block tytulStrony %}domyślny{% endblock %}</title>
     <link rel="stylesheet"
           type="text/css"
-          href="{% static "css/main_style.css" %}" />
+          href="{% static "css/main_style.css" %}?{% now "U" %}" />
     <link rel="stylesheet"
           type="text/css"
-          href="{% static "css/form_style.css" %}" />
+          href="{% static "css/form_style.css" %}?{% now "U" %}" />
     {% block head %}{% endblock %}
 </head>
 <body>
@@ -32,6 +32,15 @@
             <li id="home">
                 <a href="/" class="homeIcon">Strona główna</a>
             </li>
+            {% if not user.is_authenticated %}
+                <li id="login">
+                    <a href="/zaloguj" class="loginIcon">Zaloguj</a>
+                </li>
+            {% else %}
+                <li id="logout">
+                    <a href="/wyloguj" class="logoutIcon">Wyloguj</a>
+                </li>
+            {% endif %}
             <li>
                 <a href="/kontakt/">Kontakt</a>
             </li>
@@ -39,19 +48,12 @@
                 <a href="/admin/" title="Kliknij aby zalogować się do panelu administratora" target="_blank">Panel
                                                                                                              Administratora</a>
             </li>
-            {% if request.user.is_authenticated %}
+            {% if user.is_authenticated %}
                 <li>
                     <a href="/faktura/nowa/" title="Kliknij aby utworzyć nowe zamówienie">Nowe zamówienie</a>
                 </li>
                 <li>
                     <a href="#about" title="Zmień status zamówienia">Status zamówienia</a>
-                </li>
-                <li>
-                    <a href="/wyloguj" title="Kliknij aby się wylogować">wyloguj</a>
-                </li>
-            {% else %}
-                <li>
-                    <a href="/zaloguj" title="Kliknij aby się zalogować">Zaloguj</a>
                 </li>
             {% endif %}
             {% block nawigacja %}{% endblock %}

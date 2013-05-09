@@ -125,10 +125,9 @@ h1, h2 {
     background-color : #222;
     font-family      : 'Segoe UI Light', 'Segoe UI', Arial, sans-serif;
     font-weight      : normal;
-    margin           : 0 auto;
     position         : absolute;
     left             : 50%;
-    margin-left      : -446px;
+    margin           : 0 auto 0 -446px;
 }
 
 h1 {
@@ -173,9 +172,9 @@ div.content div.blockOuter {
 }
 
 div.content div.blockInner {
-    width      : 90%;
-    margin     : 0 auto; /*wyrównanie bloku w poziomie*/
-    padding    : 10px;
+    width   : 90%;
+    margin  : 0 auto; /*wyrównanie bloku w poziomie*/
+    padding : 10px;
 }
 
 div.content p:last-child {
@@ -318,6 +317,26 @@ div.content p:last-child {
 
 .fancyNav a.homeIcon {
     background    : url('../img/home.png') no-repeat center center;
+    display       : block;
+    overflow      : hidden;
+    padding-left  : 12px;
+    padding-right : 12px;
+    text-indent   : -9999px;
+    width         : 16px;
+}
+
+.fancyNav a.loginIcon {
+    background    : url('../img/login.png') no-repeat center center;
+    display       : block;
+    overflow      : hidden;
+    padding-left  : 12px;
+    padding-right : 12px;
+    text-indent   : -9999px;
+    width         : 16px;
+}
+
+.fancyNav a.logoutIcon {
+    background    : url('../img/logout.png') no-repeat center center;
     display       : block;
     overflow      : hidden;
     padding-left  : 12px;

@@ -52,10 +52,6 @@ MEDIA_ROOT = ''
 # Examples: "http://example.com/media/", "http://media.example.com/"
 MEDIA_URL = ''
 
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/var/www/example.com/static/"
 STATIC_PREFIX = 'D:/Dropbox/Shared/InvoiceManager'
 STATIC_ROOT = STATIC_PREFIX + '/static'
 
@@ -147,3 +143,15 @@ LOGGING = {
         },
     }
 }
+
+AUTHENTICATION_BACKENDS = ('IM.backends.ClientNameAuthBackend',)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.contrib.auth.context_processors.auth',
+    'django.contrib.messages.context_processors.messages',
+)
+
