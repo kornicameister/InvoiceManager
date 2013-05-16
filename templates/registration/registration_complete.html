@@ -1,0 +1,24 @@
+{% extends "bazowy.html" %}
+{% load staticfiles %}
+{% block tytulStrony %} MZ :: ADLER {% endblock %}
+{% block tytul %}
+    Rejestracja zakończona
+{% endblock %}
+{% block trescStrony %}
+    <div id="contentWrapper">
+        <div class="content">
+            <div class="blockOuter">
+                <div class="blockInner">
+                    <p>
+                        <strong>Mail aktywacyjny został wysłany</strong>
+                    </p>
+
+                    <p>
+                        Na podany przez Ciebie adres mail zostal wysłany mail
+                        z linkiem aktywacyjnym, proszę go użyć, aby aktywować swoje konto.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

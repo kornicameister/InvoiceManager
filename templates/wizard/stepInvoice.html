@@ -7,8 +7,12 @@
     {{ wizard.form.media }}
 {% endblock %}
 {% block trescStrony %}
-    <p>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
-    <form id="wizardForm" action="" method="post">
+    <p style="text-align: center">
+        <strong>
+            Krok {{ wizard.steps.step1 }} z {{ wizard.steps.count }}
+        </strong>
+    </p>
+    <form id="wizardForm" action="" method="post" class="beautifulForm">
         {% csrf_token %}
         <table>
             {{ wizard.management_form }}
@@ -27,6 +31,6 @@
             <button name="wizard_goto_step" type="submit"
                     value="{{ wizard.steps.prev }}">{% trans "prev step" %}</button>
         {% endif %}
-        <input type="submit" value="{% trans "submit" %}"/>
+        <input type="submit" value="{% trans "submit" %}" />
     </form>
 {% endblock %}

@@ -112,6 +112,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admindocs',
     'django.contrib.admin',
+    'django.contrib.humanize',
+    'registration',
+    'imreg',
     'IM',
 )
 
@@ -147,3 +150,14 @@ LOGGING = {
 LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = "/zaloguj/"
 LOGOUT_URL = "/wyloguj/"
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_OPEN = True        # put False to disable accounts registration
+
+# to be modified to send actual emails
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1023
+EMAIL_HOST_USER = 'username'
+EMAIL_HOST_PASSWORD = 'password'
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = 'D:/Dropbox/Shared/InvoiceManager/app-messages'   # change this to a proper location
+# to be modified to send actual emails

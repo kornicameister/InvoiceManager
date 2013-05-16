@@ -6,11 +6,12 @@
         <div id="contactForm">
             {% if sent %}
                 <div>
-                    <p>Wiadomość została wysłana</p>
+                    <p><strong>Wiadomość została wysłana</strong></p>
                 </div>
             {% else %}
                 <form action="../kontakt/" method="post">
                     <div class="box">
+                        {% csrf_token %}
                         {{ form.as_p }}
                         <p><input type="submit" value="Wyślij!"></p></div>
                 </form>
@@ -36,7 +37,7 @@
             <div id="contackMap">
                 <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
                         src="https://maps.google.pl/maps?f=q&amp;source=s_q&amp;hl=pl&amp;geocode=&amp;q=+Chinalski+Bartosz.+Ferma+drobiu,+jaja+kurze&amp;aq=&amp;sll=51.650407,19.291992&amp;sspn=0.993502,2.688904&amp;t=m&amp;ie=UTF8&amp;hq=Chinalski+Bartosz.+Ferma+drobiu,+jaja+kurze&amp;hnear=&amp;ll=51.589443,19.113464&amp;spn=0.074656,0.145912&amp;z=12&amp;output=embed"></iframe>
-                <br/>
+                <br />
                 <small><a
                         href="https://maps.google.pl/maps?f=q&amp;source=embed&amp;hl=pl&amp;geocode=&amp;q=+Chinalski+Bartosz.+Ferma+drobiu,+jaja+kurze&amp;aq=&amp;sll=51.650407,19.291992&amp;sspn=0.993502,2.688904&amp;t=m&amp;ie=UTF8&amp;hq=Chinalski+Bartosz.+Ferma+drobiu,+jaja+kurze&amp;hnear=&amp;ll=51.589443,19.113464&amp;spn=0.074656,0.145912&amp;z=12"
                         style="color:#0000FF;text-align:left">Wyświetl większą mapę</a></small>

@@ -54,7 +54,7 @@ div.box p input[type=submit] {
 /*formularz do zamówienia*/
 
 /* formularz logowania */
-form.loginForm {
+form.beautifulForm {
     width          : 70%;
     vertical-align : middle;
     margin         : 0 auto;
@@ -64,8 +64,9 @@ form.loginForm {
     background     : linear-gradient(#eeefef, #ffffff 10%);
 }
 
-form.loginForm input[type=text],
-form.loginForm input[type=password] {
+form.beautifulForm input[type=text],
+form.beautifulForm input[type=password],
+form.beautifulForm select {
     font-family   : 'Lato', Calibri, Arial, sans-serif;
     font-size     : 17px;
     font-weight   : 400;
@@ -84,27 +85,35 @@ form.loginForm input[type=password] {
     transition    : color 0.3s ease-out;
 }
 
-form.loginForm input[type=text]:hover,
-form.loginForm input[type=password]:hover {
+form.beautifulForm input[type=text]:hover,
+form.beautifulForm input[type=password]:hover,
+form.beautifulForm select:hover {
     color : #52cfeb;
 }
 
-form.loginForm input[type=text]:focus,
-form.loginForm input[type=password]:focus {
+form.beautifulForm select {
+    width : 92%;
+}
+
+form.beautifulForm input[type=text]:focus,
+form.beautifulForm input[type=password]:focus,
+form.beautifulForm select:focus {
     color : #42A2BC;
 }
 
-form.loginForm input[type=text]:focus,
-form.loginForm input[type=password]:focus,
-form.loginForm button[type=submit]:focus {
+form.beautifulForm input[type=text]:focus,
+form.beautifulForm input[type=password]:focus,
+form.beautifulForm button[type=submit]:focus,
+form.beautifulForm select:focus {
     outline : none;
 }
 
-form.loginForm input[type=text] {
+form.beautifulForm input[type=text],
+form.beautifulForm select:focus {
     margin-bottom : 10px;
 }
 
-form.loginForm input[type=submit] {
+form.beautifulForm input[type=submit] {
     /* Size and position */
     background      : url('../img/login2.png') no-repeat left center;
     background-size : contain;
@@ -120,14 +129,39 @@ form.loginForm input[type=submit] {
     cursor          : pointer;
 }
 
-form.loginForm table {
+form.beautifulForm table {
     width          : 90%;
     vertical-align : middle;
-    margin         : 0 auto;
+    margin         : 5px auto;
 }
 
-form.loginForm table td:first-child {
-    font-size : smaller;
+form.registrationForm table {
+    border-bottom              : 1px solid green;
+    border-right               : 1px solid green;
+    border-bottom-right-radius : 20px;
+    padding                    : 5px;
+}
+
+form.beautifulForm table td:first-child {
+    font-size   : smaller;
+    font-weight : bolder;
+    width       : 40%;
+}
+
+form.registrationForm table#user:before {
+    content : 'Dane logowania';
+}
+
+form.registrationForm table#company:before {
+    content : 'Dane firmy';
+}
+
+form.registrationForm table#tos:before {
+    content : 'Regulamin';
+}
+
+form.registrationForm input {
+    width : 60%;
 }
 
 /* formularz logowania */

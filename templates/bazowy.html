@@ -52,18 +52,23 @@
             </li>
             {% if not user.is_authenticated %}
                 <li id="login">
-                    <a href="/zaloguj" class="loginIcon"
+                    <a href="/accounts/register" class="registerIcon"
+                       title="Zarejestruj się">###</a>
+                </li>
+                <li id="login">
+                    <a href="/accounts/login" class="loginIcon"
                        title="Zaloguj się aby skorzystać z większej ilości funkcji">###</a>
                 </li>
             {% else %}
                 <li id="logout">
-                    <a href="/wyloguj" class="logoutIcon" title="Wyloguj się z aplikacji">###</a>
+                    <a href="/accounts/logout" class="logoutIcon" title="Wyloguj się z aplikacji">###</a>
                 </li>
             {% endif %}
             {% block nawigacja %}{% endblock %}
         </ul>
         {% if user.is_authenticated %}
-            <p style="font-size: xx-large;color: gray">Zalogowany jako: <i>{{ user.username }}</i></p>
+            <p style="font-size: xx-large;color: gray">Zalogowany jako:
+                <i>{{ user.username }} [{{ user.first_name }} {{ user.last_name }}]</i></p>
         {% endif %}
     </nav>
 

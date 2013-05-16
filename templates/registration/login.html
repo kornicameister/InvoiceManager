@@ -1,0 +1,37 @@
+{% extends "bazowy.html" %}
+{% load staticfiles %}
+{% block tytulStrony %} MZ :: ADLER {% endblock %}
+{% block tytul %}
+    Zaloguj się
+{% endblock %}
+{% block trescStrony %}
+    <div id="contentWrapper">
+        <div class="content">
+            <div class="blockOuter">
+                <div class="blockInner">
+                    Zaloguj się, aby korzystać z aplikacji
+                    <div class="formWrapper">
+                        {% if form.errors %}
+                            <p>Niepoprawny login lub hasło</p>
+                        {% endif %}
+                        <form action="{% url 'django.contrib.auth.views.login' %}" method="post" class="beautifulForm">
+                            {% csrf_token %}
+                            <table>
+                                <tr>
+                                    <td>{{ form.username.label_tag }}</td>
+                                    <td>{{ form.username }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ form.password.label_tag }}</td>
+                                    <td>{{ form.password }}</td>
+                                </tr>
+                            </table>
+                            <input type="submit" value="Zaloguj się" />
+                            <input type="hidden" name="next" value="{{ next }}" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

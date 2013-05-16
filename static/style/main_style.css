@@ -102,11 +102,18 @@ div#egg1 img {
     position    : relative;
 }
 
-footer strong {
+footer p strong {
     color       : #888888;
     display     : block;
     font-size   : 10px;
     font-weight : normal;
+}
+
+p > strong {
+    color       : darkred;
+    display     : block;
+    font-size   : 40px;
+    font-weight : bolder;
 }
 
 a, a:visited {
@@ -327,6 +334,16 @@ div.content p:last-child {
 
 .fancyNav a.loginIcon {
     background    : url('../img/login.png') no-repeat center center;
+    display       : block;
+    overflow      : hidden;
+    padding-left  : 12px;
+    padding-right : 12px;
+    text-indent   : -9999px;
+    width         : 16px;
+}
+
+.fancyNav a.registerIcon {
+    background    : url('../img/register.png') no-repeat center center;
     display       : block;
     overflow      : hidden;
     padding-left  : 12px;

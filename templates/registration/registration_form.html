@@ -1,0 +1,108 @@
+{% extends "bazowy.html" %}
+{% load staticfiles %}
+{% block tytulStrony %} MZ :: ADLER {% endblock %}
+{% block tytul %}
+    Rejestracja
+{% endblock %}
+{% block trescStrony %}
+    <div id="contentWrapper">
+        <div class="content">
+            <div class="blockOuter">
+                <div class="blockInner">
+                    Aby się zarejestrować wypełnij formularz poniżej.
+                    {% if form.errors %}
+                        <p class="errors">Please correct the errors below: {{ form.non_field_errors }}</p>
+                    {% endif %}
+                    <div class="formWrapper">
+                        <form action="" method="post" class="beautifulForm registrationForm">
+                            {% csrf_token %}
+                            <table id="user">
+                                <tr>
+                                    <td>{{ form.username.label }}</td>
+                                    <td>
+                                        {% if form.username.errors %}
+                                            {{ form.username.errors.as_text }}
+                                        {% endif %}
+                                        {{ form.username }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{ form.email.label }}</td>
+                                    <td>
+                                        {% if form.email.errors %}
+                                            {{ form.email.errors.as_text }}
+                                        {% endif %}
+                                        {{ form.email }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{ form.password1.label }}</td>
+                                    <td>
+                                        {% if form.password1.errors %}
+                                            {{ form.password1.errors.as_text }}
+                                        {% endif %}
+                                        {{ form.password1 }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{ form.password2.label }}</td>
+                                    <td>
+                                        {% if form.password2.errors %}
+                                            {{ form.password2.errors.as_text }}
+                                        {% endif %}
+                                        {{ form.password2 }}
+                                    </td>
+                                </tr>
+                            </table>
+                            <table id="company">
+                                <tr>
+                                    <td>{{ form.companyName.label }}</td>
+                                    <td>
+                                        {% if form.companyName.errors %}
+                                            {{ form.companyName.errors.as_text }}
+                                        {% endif %}
+                                        {{ form.companyName }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{ form.companyNip.label }}</td>
+                                    <td>
+                                        {% if form.companyNip.errors %}
+                                            {{ form.companyNip.errors.as_text }}
+                                        {% endif %}
+                                        {{ form.companyNip }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{ form.companyRegon.label }}</td>
+                                    <td>
+                                        {% if form.companyRegon.errors %}
+                                            {{ form.companyRegon.errors.as_text }}
+                                        {% endif %}
+                                        {{ form.companyRegon }}
+                                    </td>
+                                </tr>
+                            </table>
+                            <table id="tos">
+                                <tr>
+                                    <td>{{ form.tos.label }}</td>
+                                    <td>
+                                        {% if form.tos.errors %}
+                                            {{ form.tos.errors.as_text }}
+                                        {% endif %}
+                                        {{ form.tos }}
+                                    </td>
+                                </tr>
+                            </table>
+                            <input type="submit" value="Rejestracja" />
+                            <input type="hidden" name="next" value="{{ next }}" />
+                        </form>
+                        <p class="register">
+                            Już zarejestrowany? <strong><a href="{% url 'auth_login' %}">Zaloguj się!</a></strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

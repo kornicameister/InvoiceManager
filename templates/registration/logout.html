@@ -1,0 +1,23 @@
+{% extends "bazowy.html" %}
+{% load staticfiles %}
+{% block tytulStrony %} MZ :: ADLER {% endblock %}
+{% block tytul %}
+    Wylogowany
+{% endblock %}
+{% block trescStrony %}
+    <div id="contentWrapper">
+        <div class="content">
+            <div class="blockOuter">
+                <div class="blockInner">
+                    <p>
+                        <strong>Zostałeś wylogowany z aplikacji, dziękujemy.</strong>
+                    </p>
+
+                    <p>
+                        Możesz przejść do <a href="/">strony głównej</a> lub zalogować się <a href="/accounts/login/">ponownie</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
