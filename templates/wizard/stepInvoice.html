@@ -29,17 +29,18 @@
                 firstDay          : 1,
                 isRTL             : false,
                 showMonthAfterYear: false,
+                showOtherMonths   : true,
+                selectOtherMonths : true,
+                changeMonth       : true,
+                changeYear        : true,
+                showWeek          : true,
+                showOn: "button",
+                buttonImage       : '{% static "img/calendar.gif" %}',
+                buttonImageOnly   : true,
                 yearSuffix        : ''};
             $.datepicker.setDefaults($.datepicker.regional['pl']);
-            var dataPickerValues = {
-                showOtherMonths  : true,
-                selectOtherMonths: true,
-                changeMonth      : true,
-                changeYear       : true,
-                defaultDate      : new Date()
-            };
-            $("#id_invoice-dw").datepicker(dataPickerValues);
-            $("#id_invoice-dr").datepicker(dataPickerValues);
+            $("#id_invoice-dw").datepicker();
+            $("#id_invoice-dr").datepicker();
         });
     </script>
     {{ wizard.form.media }}

@@ -6,8 +6,7 @@ from django.forms.models import modelformset_factory, BaseFormSet, BaseModelForm
 from django.shortcuts import render_to_response
 from django import forms
 
-from models import PozycjaZamowienia
-from models import Zamowienie
+from models import PozycjaZamowienia, Klient, Zamowienie
 
 
 class ContactForm(forms.Form):
@@ -21,6 +20,7 @@ class ContactForm(forms.Form):
 class ZamowienieForm(forms.ModelForm):
     class Meta:
         model = Zamowienie
+        exclude = ('klient',)
 
 
 class PozycjaZamowieniaForm(forms.ModelForm):
@@ -58,17 +58,32 @@ class ZamowienieWizard(SessionWizardView):
     def get_template_names(self):
         return [self.TEMPLATES[self.steps.current]]
 
+    def post(self, *args, **kwargs):
+        return super(ZamowienieWizard, self).post(*args, **kwargs)
+
     def done(self, form_list, **kwargs):
         invoice = None
 
+        from django_tools.middlewares import ThreadLocal
+
+        user = ThreadLocal.get_current_user().username
+        klient = Klient.objects.get(nazwa=user)
+
         for form in form_list:
             if isinstance(form, ZamowienieForm):
-                invoice = form.save()
+                invoiceData = form.cleaned_data
+                invoiceData.update({
+                    'klient': klient
+                })
+                invoice = Zamowienie(**invoiceData)
+                invoice.save()
             elif isinstance(form, BaseFormSet):
                 for posForm in form.forms:
                     if isinstance(posForm, PozycjaZamowieniaForm):
                         positionData = posForm.cleaned_data
-                        positionData.update({'zamowienie': invoice})
+                        positionData.update({
+                            'zamowienie': invoice
+                        })
                         position = PozycjaZamowienia(**positionData)
                         position.save()
                     else:

@@ -91,6 +91,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_tools.middlewares.ThreadLocal.ThreadLocalMiddleware'
 )
 
 ROOT_URLCONF = 'InvoiceManager.urls'
