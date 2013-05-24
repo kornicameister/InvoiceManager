@@ -10,7 +10,7 @@ from registration.models import RegistrationManager, RegistrationProfile
 from django.conf import settings
 from django.template.loader import render_to_string
 
-from IM.models import Klient
+from IM.models import Klient, DaneKontaktowe, Adres
 
 
 try:
@@ -29,8 +29,22 @@ class CRegistrationManager(RegistrationManager):
         """
         return super(CRegistrationManager, self).activate_user(activation_key)
 
-    def create_inactive_user_with_company(self, username, email, password, site, companyName, companyNIP, companyREGON,
-                                          send_email=True):
+    def create_inactive_user_im(self,
+                                username,
+                                firstname,
+                                lastname,
+                                city,
+                                cityPostalCode,
+                                cityStreet,
+                                cityStreetNumber,
+                                phoneNumber,
+                                email,
+                                password,
+                                site,
+                                companyName,
+                                companyNIP,
+                                companyREGON,
+                                send_email=True):
         """
         Creates inactive user with persisting IM.models.Klient as well
         """
@@ -38,11 +52,25 @@ class CRegistrationManager(RegistrationManager):
         self.companyNIP = companyNIP
         self.companyREGON = companyREGON
 
+        self.userFN = firstname
+        self.userLN = lastname
+        self.city = city
+        self.cityPostalCode = cityPostalCode
+        self.cityStreet = cityStreet
+        self.cityStreetNumber = cityStreetNumber
+
+        self.phoneNumber = phoneNumber
+
         return self.create_inactive_user(username, email, password, site, send_email)
 
     def create_inactive_user(self, username, email, password, site, send_email=True):
-        new_user = User.objects.create_user(username, email, password)
+        new_user = User.objects.create_user(
+            username=username,
+            email=email,
+            password=password)
         new_user.is_active = False
+        new_user.first_name = self.userFN
+        new_user.last_name = self.userLN
         new_user.save()
 
         client = Klient.objects.create(
@@ -53,6 +81,29 @@ class CRegistrationManager(RegistrationManager):
             typ=Klient.STALY
         )
         client.save()
+
+        phoneNumber = DaneKontaktowe.objects.create(
+            kontakt=self.phoneNumber,
+            typ=DaneKontaktowe.TELEFON,
+            klient=client
+        )
+        phoneNumber.save()
+
+        mail = DaneKontaktowe.objects.create(
+            kontakt=new_user.email,
+            typ=DaneKontaktowe.MAIL,
+            klient=client
+        )
+        mail.save()
+
+        address = Adres.objects.create(
+            miasto=self.city,
+            kodPocztowy=self.cityPostalCode,
+            ulica=self.cityStreet,
+            nrBudynku=self.cityStreetNumber,
+            klient=client
+        )
+        address.save()
 
         registration_profile = self.create_profile_with_client(new_user, client)
 
@@ -81,8 +132,12 @@ class CRegistrationManager(RegistrationManager):
             if profile.activation_key_expired():
                 user = profile.user
                 if not user.is_active:
-                    klient = Klient.objects.get(nazwa=user.username)
-                    klient.delete()
+                    object = Klient.objects.get(nazwa=user.username)
+                    object.delete()
+                    object = Adres.objects.get(nazwa=user.username)
+                    object.delete()
+                    object = DaneKontaktowe.objects.get(nazwa=user.username)
+                    object.delete()
         super(CRegistrationManager, self).delete_expired_users()
 
 

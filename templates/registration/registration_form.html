@@ -18,21 +18,12 @@
                             {% csrf_token %}
                             <table id="user">
                                 <tr>
-                                    <td>{{ form.username.label }}</td>
+                                    <td>Login</td>
                                     <td>
                                         {% if form.username.errors %}
                                             {{ form.username.errors.as_text }}
                                         {% endif %}
                                         {{ form.username }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>{{ form.email.label }}</td>
-                                    <td>
-                                        {% if form.email.errors %}
-                                            {{ form.email.errors.as_text }}
-                                        {% endif %}
-                                        {{ form.email }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -51,6 +42,44 @@
                                             {{ form.password2.errors.as_text }}
                                         {% endif %}
                                         {{ form.password2 }}
+                                    </td>
+                                </tr>
+                            </table>
+                            <table id="contact">
+                                <tr>
+                                    <td>{{ form.userFirstName.label }}</td>
+                                    <td>
+                                        {% if form.userFirstName.errors %}
+                                            {{ form.userFirstName.errors.as_text }}
+                                        {% endif %}
+                                        {{ form.userFirstName }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{ form.userLastName.label }}</td>
+                                    <td>
+                                        {% if form.userLastName.errors %}
+                                            {{ form.userLastName.errors.as_text }}
+                                        {% endif %}
+                                        {{ form.userLastName }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{ form.email.label }}</td>
+                                    <td>
+                                        {% if form.email.errors %}
+                                            {{ form.email.errors.as_text }}
+                                        {% endif %}
+                                        {{ form.email }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{ form.phoneNumber.label }}</td>
+                                    <td>
+                                        {% if form.phoneNumber.errors %}
+                                            {{ form.phoneNumber.errors.as_text }}
+                                        {% endif %}
+                                        {{ form.phoneNumber }}
                                     </td>
                                 </tr>
                             </table>
@@ -80,6 +109,32 @@
                                             {{ form.companyRegon.errors.as_text }}
                                         {% endif %}
                                         {{ form.companyRegon }}
+                                    </td>
+                                </tr>
+                            </table>
+                            <table id="address">
+                                <tr>
+                                    <td>{{ form.city.label }} / {{ form.postalCode.label }}</td>
+                                    <td>
+                                        {% if form.city.errors %}
+                                            {{ form.city.errors.as_text }}
+                                        {% endif %}
+                                        {% if form.postalCode.errors %}
+                                            {{ form.postalCode.errors.as_text }}
+                                        {% endif %}
+                                        {{ form.city }} / {{ form.postalCode }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{ form.street.label }} / {{ form.streetNumber.label }}</td>
+                                    <td>
+                                        {% if form.street.errors %}
+                                            {{ form.street.errors.as_text }}
+                                        {% endif %}
+                                        {% if form.streetNumber.errors %}
+                                            {{ form.streetNumber.errors.as_text }}
+                                        {% endif %}
+                                        {{ form.street }} / {{ form.streetNumber }}
                                     </td>
                                 </tr>
                             </table>

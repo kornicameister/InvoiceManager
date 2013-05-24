@@ -13,6 +13,13 @@ class CRegistrationView(RegistrationView):
         companyName = cleaned_data['companyName']
         companyNIP = cleaned_data['companyNip']
         companyREGON = cleaned_data['companyRegon']
+        userFirstName = cleaned_data['userFirstName']
+        userLastName = cleaned_data['userLastName']
+        city = cleaned_data['city']
+        postalCode = cleaned_data['postalCode']
+        street = cleaned_data['street']
+        streetNumber = cleaned_data['streetNumber']
+        phoneNumber = cleaned_data['phoneNumber']
 
         if Site._meta.installed:
             site = Site.objects.get_current()
@@ -21,13 +28,20 @@ class CRegistrationView(RegistrationView):
 
         new_user = CRegistrationProfile \
             .objects \
-            .create_inactive_user_with_company(username=username,
-                                               email=email,
-                                               companyName=companyName,
-                                               companyNIP=companyNIP,
-                                               companyREGON=companyREGON,
-                                               password=password,
-                                               site=site)
+            .create_inactive_user_im(username=username,
+                                     firstname=userFirstName,
+                                     lastname=userLastName,
+                                     password=password,
+                                     email=email,
+                                     city=city,
+                                     cityPostalCode=postalCode,
+                                     cityStreet=street,
+                                     cityStreetNumber=streetNumber,
+                                     companyName=companyName,
+                                     companyNIP=companyNIP,
+                                     companyREGON=companyREGON,
+                                     phoneNumber=phoneNumber,
+                                     site=site)
 
         signals.user_registered.send(sender=self.__class__,
                                      user=new_user,

@@ -160,6 +160,18 @@ form.registrationForm table#tos:before {
     content : 'Regulamin';
 }
 
+form.registrationForm table#contact:before {
+    content : 'Kontakt';
+}
+
+form.registrationForm table#address:before {
+    content : 'Adres';
+}
+
+form.registrationForm table#address td input {
+    width : 30%;
+}
+
 form.registrationForm input {
     width : 60%;
 }

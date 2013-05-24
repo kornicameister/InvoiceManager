@@ -4,6 +4,44 @@
 {% block tytulStrony %} MZ :: ADLER :: Nowe zamówienie {% endblock %}
 {% block tytul %}Zamówienie{% endblock %}
 {% block head %}
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <script
+            type="text/javascript"
+            src="{% static "js/jquery-2.0.0.js" %}"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $.datepicker.regional['pl'] = {
+                closeText         : 'Zamknij',
+                prevText          : '&#x3c;Poprzedni',
+                nextText          : 'Następny&#x3e;',
+                currentText       : 'Dziś',
+                monthNames        : ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec',
+                    'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
+                monthNamesShort   : ['Sty', 'Lu', 'Mar', 'Kw', 'Maj', 'Cze',
+                    'Lip', 'Sie', 'Wrz', 'Pa', 'Lis', 'Gru'],
+                dayNames          : ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'],
+                dayNamesShort     : ['Nie', 'Pn', 'Wt', 'Śr', 'Czw', 'Pt', 'So'],
+                dayNamesMin       : ['N', 'Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'So'],
+                weekHeader        : 'Tydz',
+                dateFormat        : 'dd.mm.yy',
+                firstDay          : 1,
+                isRTL             : false,
+                showMonthAfterYear: false,
+                yearSuffix        : ''};
+            $.datepicker.setDefaults($.datepicker.regional['pl']);
+            var dataPickerValues = {
+                showOtherMonths  : true,
+                selectOtherMonths: true,
+                changeMonth      : true,
+                changeYear       : true,
+                defaultDate      : new Date()
+            };
+            $("#id_invoice-dw").datepicker(dataPickerValues);
+            $("#id_invoice-dr").datepicker(dataPickerValues);
+        });
+    </script>
     {{ wizard.form.media }}
 {% endblock %}
 {% block trescStrony %}
