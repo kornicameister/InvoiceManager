@@ -114,7 +114,7 @@ class PozycjaZamowienia(models.Model):
     ilosc_typ = models.CharField(max_length=3, choices=ILOSC_RODZAJ, default=ILOSC_SKRZYNKI, db_index=True,
                                  verbose_name='Opakowanie')
     transport = models.CharField(max_length=100, choices=TRANSPORT, verbose_name='Transport')
-    uwagi = models.CharField(max_length=1000)
+    uwagi = models.CharField(max_length=1000, blank=True)
 
     def setInvoice(self, zamowienie=None):
         if zamowienie is None:

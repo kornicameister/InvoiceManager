@@ -16,7 +16,14 @@
                 formCssClass: 'dynamic-event-form',
                 prefix      : 'invoicePosition'
             });
-        })
+
+            var uwagiField = $('tr th label:contains("Uwagi:")');
+            var selectField = $('tr th label:contains("Transport:")').parent().parent().children('td').children('select')
+            setInterval(watchForChange, 250); // Every quarter second
+            function watchForChange() {
+                uwagiField.parent().parent().toggle(selectField.val() == 'WW')
+            }
+        });
     </script>
     {{ wizard.form.media }}
 {% endblock %}

@@ -43,15 +43,19 @@
                         <a href="/faktura/nowa/" title="Kliknij aby utworzyć nowe zamówienie">Nowe zamówienie</a>
                     </li>
                     <li>
-                        <a href="/faktura/klient/{{ user.username }}" title="Pokaż historię zamówień">Historia zamówień</a>
+                        <a href="/faktura/klient/{{ user.username }}" title="Pokaż historię zamówień">Historia
+                                                                                                      zamówień</a>
                     </li>
                 {% endif %}
             {% endif %}
             <li>
                 <a href="/kontakt/">Kontakt</a>
             </li>
+            <li>
+                <a href="/polityka/prywatnosci/">Polityka prywatności</a>
+            </li>
             {% if not user.is_authenticated %}
-                <li id="login">
+                <li id="register">
                     <a href="/accounts/register" class="registerIcon"
                        title="Zarejestruj się">###</a>
                 </li>

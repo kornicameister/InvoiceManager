@@ -60,3 +60,8 @@ def faktury(request, user_name):
                                   'resp': resp
                               },
                               context_instance=RequestContext(request))
+
+
+def politykaPrywatnosci(request):
+    return render_to_response('inne/politykaPrywatnosci.html',
+                              context_instance=RequestContext(request))
