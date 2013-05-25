@@ -1,4 +1,5 @@
 # coding=utf-8
+from django.template import RequestContext
 
 __author__ = 'Adler'
 from django.contrib.formtools.wizard.views import SessionWizardView
@@ -93,4 +94,5 @@ class ZamowienieWizard(SessionWizardView):
 
         return render_to_response('wizard/stepDone.html',
                                   {'zamowienie': invoice,
-                                   'pozycje': PozycjaZamowienia.objects.filter(zamowienie_id=invoice.pk)})
+                                   'pozycje': PozycjaZamowienia.objects.filter(zamowienie_id=invoice.pk)},
+                                  context_instance=RequestContext(ThreadLocal.get_current_request()))
