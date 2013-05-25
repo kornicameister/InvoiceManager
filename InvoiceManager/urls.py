@@ -8,7 +8,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('IM.views',
                        url(r'^$', 'index'),
-                       url(r'^accounts/$', include('imreg.urls')),
+                       url(r'^accounts/', include('imreg.urls')),
                        url(r'^kontakt/$', 'pokazKontakt'),
                        url(r'^faktura/klient/(?P<user_name>\w+)$', 'faktury'),
                        url(r'^faktura/nowa/$', login_required(ZamowienieWizard.as_view(ZamowienieWizard.get_forms()),

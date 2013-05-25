@@ -3,8 +3,8 @@ from django import forms
 from registration.forms import RegistrationFormUniqueEmail, RegistrationFormTermsOfService
 
 PATTERN_POST = r'^[0-9]{2}-[0-9]{3}$'
-FROM_CAPITALIZED = r'^[A-Z]([a-zA-Z]{2,40})$'
-NIP = r'^(\(d{3}-\d{3}-\d{2}-\d{2})|(d{3}-\d{2}-\d{2}-\d{3})$'
+FROM_CAPITALIZED = r'^([A-Z]){1}[a-zA-Z]+$'
+NIP = r'^(\d{3}[- ]\d{3}[- ]\d{2}[- ]\d{2})|(\d{3}[- ]\d{2}[- ]\d{2}[- ]\d{3})$'
 REGON = r'^\d{9}$'
 PHONE = r'^[0-9]+-?[0-9]+-?[0-9]+-?[0-9]+-?[0-9]*$'
 

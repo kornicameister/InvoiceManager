@@ -79,12 +79,6 @@ class ZamowienieAdmin(admin.ModelAdmin):
             {
                 'fields': ['platnosc', 'klient']
             }
-        ),
-        (
-            'Ewentualne uwagi',
-            {
-                'fields': ['uwagi']
-            }
         )
     ]
     inlines = [PozycjaInline]
