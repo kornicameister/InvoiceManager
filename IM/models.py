@@ -108,12 +108,13 @@ class PozycjaZamowienia(models.Model):
     )
     ###########################################
     zamowienie = models.ForeignKey(Zamowienie)
-    produkt = models.ForeignKey(Produkt)
-    rodzaj = models.CharField(max_length=2, choices=JAJKO_RODZAJ, default=KLATKOWE, db_index=True)
-    ilosc = models.IntegerField()
+    produkt = models.ForeignKey(Produkt, verbose_name='Produkt')
+    rodzaj = models.CharField(verbose_name='Rodzaj', max_length=2, choices=JAJKO_RODZAJ, default=KLATKOWE,
+                              db_index=True)
+    ilosc = models.IntegerField(verbose_name='Ilość')
     ilosc_typ = models.CharField(max_length=3, choices=ILOSC_RODZAJ, default=ILOSC_SKRZYNKI, db_index=True,
                                  verbose_name='Opakowanie')
-    transport = models.CharField(max_length=100, choices=TRANSPORT, verbose_name='Wymagania transportowe')
+    transport = models.CharField(max_length=100, choices=TRANSPORT, verbose_name='Transport')
 
     def setInvoice(self, zamowienie=None):
         if zamowienie is None:

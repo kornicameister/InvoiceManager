@@ -1,0 +1,45 @@
+{% extends "bazowy.html" %}
+{% load i18n %}
+{% load static %}
+{% load render_table from django_tables2 %}
+{% load renderPlatnosc from helpers %}
+{% block tytulStrony %} MZ :: ADLER :: Historia zamówień{% endblock %}
+{% block tytul %}Historia zamowień{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/le-frog/jquery-ui.css" />
+    <link rel="stylesheet" href="{% static 'css/tables.css' %}" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+{% endblock %}
+{% block trescStrony %}
+    <div id="contentWrapper">
+        <div class="content">
+            <div class="blockOuter">
+                <p>Lista zamówień klienta {{ klient.firma }}</p>
+
+                <div class="blockInner">
+                    <div id="accordion">
+                        {% for zamowienie in resp.iterkeys %}
+                            <h3>Zamówienie = {{ zamowienie.pk }} / [{{ zamowienie.dw }} : {{ zamowienie.dr }}]
+                                / {% renderPlatnosc zamowienie.platnosc %}</h3>
+                            <div>
+                                {% for zam,poz in resp.iteritems %}
+                                    {% if zam == zamowienie %}
+                                        <div class="blockInner">
+                                            <div class="blockOuter">
+                                                {% render_table poz %}
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#accordion").accordion();
+    </script>
+{% endblock %}

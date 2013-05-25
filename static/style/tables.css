@@ -1,0 +1,34 @@
+table.invoiceItems thead a, tbody td {
+    font-size : small;
+}
+
+table.invoiceItems thead {
+    background-color : rgba(242, 200, 120, 0.1);
+}
+
+table.invoiceItems thead a {
+    color       : darkorange;
+    font-weight : bolder;
+}
+
+table.invoiceItems thead th, tbody td {
+    margin-left : 10px;
+    width       : 150px;
+}
+
+table.invoiceItems tr {
+    height : 40px;
+}
+
+table.invoiceItems {
+    border-collapse : collapse;
+}
+
+table.invoiceItems, th, td {
+    border : 1px solid black;
+}
+
+table.invoiceItems + ul.pagination {
+    visibility: hidden;
+    display: none;
+}
