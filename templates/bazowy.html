@@ -40,10 +40,11 @@
                     </li>
                 {% else %}
                     <li>
-                        <a href="/faktura/nowa/" title="Kliknij aby utworzyć nowe zamówienie">Nowe zamówienie</a>
+                        <a href="/faktury/klient/{{ user.username }}/nowa" title="Kliknij aby utworzyć nowe zamówienie">Nowe
+                                                                                                                        zamówienie</a>
                     </li>
                     <li>
-                        <a href="/faktura/klient/{{ user.username }}" title="Pokaż historię zamówień">Historia
+                        <a href="/faktury/klient/{{ user.username }}" title="Pokaż historię zamówień">Historia
                                                                                                       zamówień</a>
                     </li>
                 {% endif %}
